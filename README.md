@@ -196,11 +196,11 @@ Here is a list of all the default variables for this role, which are also availa
 ``` yml
 ---
 ## Installation options
-redis_version: 2.8.9
-redis_install_dir: /opt/redis
+redis_version: 3.0.7
+redis_install_dir: /data/redis
 redis_user: redis
 redis_group: "{{ redis_user }}"
-redis_dir: /var/lib/redis/{{ redis_port }}
+redis_dir: /data/redis/{{ redis_port }}
 redis_download_url: "http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz"
 redis_verify_checksum: false
 redis_tarball: false
@@ -306,3 +306,7 @@ The following facts are accessible in your inventory or tasks outside of this ro
 - `{{ ansible_local.redis.sentinel_monitors }}`
 
 To disable these facts, set `redis_local_facts` to a false value.
+
+## moli private
+
+Add custom config for moli crop used. with aliyun ecs
