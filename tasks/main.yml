@@ -1,6 +1,8 @@
 ---
 - include: check_vars.yml
 
+- include: sysconf.yml
+
 - include: install.yml
 
 - include: server.yml

@@ -1,0 +1,29 @@
+---
+# config systemconfig
+# Background save may fail under low memory condition. To fix this issue add above
+
+- name: Add net.core.somaxconn=2048
+  sysctl:
+    name: net.core.somaxconn
+    value: 2048
+    state: present
+    reload: yes
+    ignoreerrors: yes
+
+- name: Disable Transparent Huge Pages
+  script: files/kernel_conf.sh
+
+- name: Transparent Huge Pages when reboot
+  lineinfile:
+    dest=/etc/rc.local
+    insertafter=EOF
+    state=present
+    line="echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+
+- name: Enlarge net.nf_conntrack_max = 655350
+  sysctl:
+    name: net.nf_conntrack_max
+    value: 655350
+    state: present
+    reload: yes
+    ignoreerrors: yes
